@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/widgets/content_constant.dart';
+import 'package:bmi_calculator/components/content_constant.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String title;

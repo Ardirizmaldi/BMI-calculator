@@ -1,5 +1,5 @@
-import 'package:bmi_calculator/widgets/content_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:bmi_calculator/components/content_constant.dart';
 
 class ContentHeight extends StatelessWidget {
   final IconData icon;

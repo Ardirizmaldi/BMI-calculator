@@ -5,8 +5,19 @@ const labelTextStyle = TextStyle(
   color: Colors.white,
 );
 
+const resultTextStyle = TextStyle(
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+);
+
 const boldLabelTextStyle = TextStyle(
   fontSize: 50.0,
+  color: Colors.white,
+  fontWeight: FontWeight.w900,
+);
+
+const resultNumberTextStyle = TextStyle(
+  fontSize: 100.0,
   color: Colors.white,
   fontWeight: FontWeight.w900,
 );

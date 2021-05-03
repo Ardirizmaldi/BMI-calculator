@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/widgets/content_constant.dart';
+import 'package:bmi_calculator/components/content_constant.dart';
 
 class ContentWeightAge extends StatelessWidget {
   final IconData icon;
   final String title;
-  final int number;
+  final double inputNumber;
   final bool darkMode;
   final Function increase;
   final Function decrease;
@@ -12,7 +12,7 @@ class ContentWeightAge extends StatelessWidget {
     Key key,
     this.icon,
     this.title,
-    this.number,
+    this.inputNumber,
     this.darkMode,
     this.increase,
     this.decrease,
@@ -27,7 +27,7 @@ class ContentWeightAge extends StatelessWidget {
           style: labelTextStyle,
         ),
         Text(
-          number.toString(),
+          inputNumber.toString(),
           style: boldLabelTextStyle,
         ),
         Row(

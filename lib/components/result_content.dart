@@ -1,8 +1,9 @@
-import 'package:bmi_calculator/utils/form_enum.dart';
+import 'package:bmi_calculator/screen/routes.dart';
+import 'package:flutter/material.dart';
+
 import 'package:bmi_calculator/utils/screen_arguments.dart';
 import 'package:bmi_calculator/widgets/button_widget.dart';
-import 'package:bmi_calculator/widgets/content_constant.dart';
-import 'package:flutter/material.dart';
+import 'package:bmi_calculator/components/content_constant.dart';
 
 class ResultScreen extends StatefulWidget {
   @override
@@ -29,9 +30,12 @@ class _ResultScreenState extends State<ResultScreen> {
             flex: 1,
             child: Container(
               margin: EdgeInsets.all(8),
+              alignment: Alignment.bottomLeft,
               child: Text(
                 'Your Result',
-                style: boldLabelTextStyle,
+                style: boldLabelTextStyle.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -39,7 +43,7 @@ class _ResultScreenState extends State<ResultScreen> {
             flex: 5,
             child: Container(
               width: double.infinity,
-              margin: EdgeInsets.all(8),
+              margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: args.darkMode ? Color(0xFF242425) : Colors.lightBlue,
                 border: Border.all(
@@ -49,36 +53,42 @@ class _ResultScreenState extends State<ResultScreen> {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'NORMAL',
-                    style: labelTextStyle.copyWith(
-                      color: Colors.green,
-                      fontWeight: FontWeight.w700,
+                    args.caption1,
+                    style: resultTextStyle.copyWith(
+                      color: args.colorResult,
                     ),
                   ),
                   Text(
-                    args.rate.roundToDouble().toString(),
-                    style: boldLabelTextStyle,
-                  ),
-                  Visibility(
-                    visible: args.result == BMIResultEnum.normal,
-                    child: Column(
-                      children: [
-                        Text(
-                          'Normal BMI range:',
-                          style: labelTextStyle,
-                        ),
-                        Text(
-                          args.caption1,
-                          style: labelTextStyle,
-                        ),
-                      ],
+                    args.rate,
+                    style: resultNumberTextStyle.copyWith(
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    args.caption2,
-                    style: labelTextStyle,
+                  Column(
+                    children: [
+                      Text(
+                        '${args.caption1} BMI range:',
+                        style: labelTextStyle,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: Text(
+                          args.rangeInfoBMI,
+                          style: labelTextStyle,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Text(
+                      args.caption2,
+                      textAlign: TextAlign.center,
+                      style: labelTextStyle,
+                    ),
                   ),
                 ],
               ),
@@ -86,7 +96,9 @@ class _ResultScreenState extends State<ResultScreen> {
           ),
           ButtonWidget(
             title: 'RE-CALCULATE',
-            onNavigate: () => Navigator.of(context).pop(),
+            onNavigate: () => Navigator.of(context).pushReplacementNamed(
+              RouteList.initial,
+            ),
           ),
         ],
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/widgets/content_constant.dart';
+import 'package:bmi_calculator/components/content_constant.dart';
 
 class ContentGender extends StatelessWidget {
   final IconData icon;

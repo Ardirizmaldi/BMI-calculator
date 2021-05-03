@@ -1,5 +1,5 @@
-import 'package:bmi_calculator/widgets/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:bmi_calculator/screen/routes.dart';
 import 'package:bmi_calculator/widgets/skeleton_card.dart';
 
 void main() => runApp(BMICalculator());

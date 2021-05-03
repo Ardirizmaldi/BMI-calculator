@@ -1,5 +1,5 @@
-import 'package:bmi_calculator/widgets/result_content.dart';
 import 'package:flutter/material.dart';
+import 'package:bmi_calculator/components/result_content.dart';
 
 abstract class RouteList {
   static const String initial = '/';

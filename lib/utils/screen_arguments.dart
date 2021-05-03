@@ -1,17 +1,19 @@
-import 'package:bmi_calculator/utils/form_enum.dart';
+import 'package:flutter/material.dart';
 
 class ResultScreenArguments {
-  final BMIResultEnum result;
-  final double rate;
+  final String rate;
   final String caption1;
   final String caption2;
   final bool darkMode;
+  final String rangeInfoBMI;
+  final Color colorResult;
 
   ResultScreenArguments({
-    this.result,
     this.rate,
     this.caption1,
     this.caption2,
     this.darkMode,
+    this.rangeInfoBMI,
+    this.colorResult,
   });
 }

@@ -1,13 +1,15 @@
+import 'package:bmi_calculator/utils/calculator_brain.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:bmi_calculator/screen/routes.dart';
 import 'package:bmi_calculator/utils/form_enum.dart';
 import 'package:bmi_calculator/utils/screen_arguments.dart';
 import 'package:bmi_calculator/widgets/button_widget.dart';
-import 'package:bmi_calculator/widgets/content_card.dart';
-import 'package:bmi_calculator/widgets/gender_content.dart';
-import 'package:bmi_calculator/widgets/height_content.dart';
-import 'package:bmi_calculator/widgets/routes.dart';
-import 'package:bmi_calculator/widgets/weight_age_content.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:bmi_calculator/components/content_card.dart';
+import 'package:bmi_calculator/components/gender_content.dart';
+import 'package:bmi_calculator/components/height_content.dart';
+import 'package:bmi_calculator/components/weight_age_content.dart';
 
 class BodyCalculator extends StatefulWidget {
   final ValueNotifier<bool> darkMode;
@@ -22,8 +24,8 @@ class BodyCalculator extends StatefulWidget {
 class _BodyCalculatorState extends State<BodyCalculator> {
   GenderEnum genderSelected;
   double height = 180;
-  int weight = 55;
-  int age = 18;
+  double weight = 55;
+  double age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +97,7 @@ class _BodyCalculatorState extends State<BodyCalculator> {
                       darkMode: darkMode,
                       childWidget: ContentWeightAge(
                         title: 'WEIGHT',
-                        number: weight,
+                        inputNumber: weight,
                         darkMode: darkMode,
                         increase: () {
                           setState(() {
@@ -115,7 +117,7 @@ class _BodyCalculatorState extends State<BodyCalculator> {
                       darkMode: darkMode,
                       childWidget: ContentWeightAge(
                         title: 'AGE',
-                        number: age,
+                        inputNumber: age,
                         darkMode: darkMode,
                         increase: () {
                           setState(() {
@@ -135,16 +137,24 @@ class _BodyCalculatorState extends State<BodyCalculator> {
             ),
             ButtonWidget(
               title: 'CALCULATE',
-              onNavigate: () => Navigator.of(context).pushNamed(
-                RouteList.result,
-                arguments: ResultScreenArguments(
-                  result: BMIResultEnum.normal,
-                  rate: 26.8,
-                  caption1: 'Test',
-                  caption2: 'test',
-                  darkMode: darkMode,
-                ),
-              ),
+              onNavigate: () {
+                CalculatorBrain calc = CalculatorBrain(
+                  height: height,
+                  weight: weight,
+                );
+
+                Navigator.of(context).pushReplacementNamed(
+                  RouteList.result,
+                  arguments: ResultScreenArguments(
+                    rate: calc.calculateBMI(),
+                    caption1: calc.getResult(),
+                    caption2: calc.getInterpolation(),
+                    darkMode: darkMode,
+                    rangeInfoBMI: calc.getRangeBMI(),
+                    colorResult: calc.getColorResult(),
+                  ),
+                );
+              },
             ),
           ],
         );
